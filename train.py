@@ -108,27 +108,27 @@ for epoch in range(1, num_epochs + 1):
 
 
 gen_spectrum = a_G_var.cpu().data.numpy().squeeze()
-gen_audio_C = args.output + ".wav"
+gen_audio_C = "output/" + args.output + ".wav"
 spectrum2wav(gen_spectrum, sr, gen_audio_C)
 
 plt.figure()
 plt.plot(all_losses)
-plt.savefig('loss_curve.png')
+plt.savefig(f'plot/{args.output}_loss_curve.png')
 
 plt.figure(figsize=(5, 5))
 # we then use the 2nd column.
 plt.subplot(1, 1, 1)
 plt.title("Content Spectrum")
-plt.imsave('Content_Spectrum.png', a_content[:400, :])
+plt.imsave(f'plot/{args.output}_Content_Spectrum.png', a_content[:400, :])
 
 plt.figure(figsize=(5, 5))
 # we then use the 2nd column.
 plt.subplot(1, 1, 1)
 plt.title("Style Spectrum")
-plt.imsave('Style_Spectrum.png', a_style[:400, :])
+plt.imsave(f'plot/{args.output}_Style_Spectrum.png', a_style[:400, :])
 
 plt.figure(figsize=(5, 5))
 # we then use the 2nd column.
 plt.subplot(1, 1, 1)
 plt.title("CNN Voice Transfer Result")
-plt.imsave('Gen_Spectrum.png', gen_spectrum[:400, :])
+plt.imsave(f'plot/{args.output}_Gen_Spectrum.png', gen_spectrum[:400, :])
